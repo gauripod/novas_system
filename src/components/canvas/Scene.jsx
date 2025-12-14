@@ -1,44 +1,29 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { Suspense } from "react";
-import Camera from "./Camera";
-import Lights from "./Lights";
-import NodeMesh from "@/components/nodes/NodeMesh";
-import { generateRingLayout } from "@/lib/layout";
-import { generateDependencies } from "@/lib/dependencies";
-import Edge from "@/components/edges/Edge";
-
-
-const nodes = generateRingLayout(10);
-
-const edges = generateDependencies(nodes);
-
+import CameraRig from "./CameraRig";
+import GridPlane from "./GridPlane";
+import SystemSpine from "./SystemSpine";
+import SystemNode from "./SystemNode";
 
 export default function Scene() {
   return (
-    <Canvas dpr={[1, 2]} gl={{ antialias: true }}>
-      <Suspense fallback={null}>
-        <Camera />
-        <Lights />
+    <Canvas>
+      <CameraRig />
 
-        {edges.map((edge) => (
-          <Edge
-            key={edge.id}
-            from={edge.from}
-            to={edge.to}
-            health={edge.health}
-          />
-        ))}
+      <ambientLight intensity={0.25} />
+      <directionalLight position={[4, 6, 4]} intensity={0.6} color="#00eaff" />
+      <fog attach="fog" args={["#02050b", 3.4, 9]} />
 
-        {nodes.map((node) => (
-          <NodeMesh
-            key={node.id}
-            position={node.position}
-            health={node.health}
-          />
-        ))}
-      </Suspense>
+      <GridPlane />
+      <group position={[0, -0.45, -0.6]} scale={1.35}>
+        <SystemSpine />
+
+        <SystemNode position={[0.9, 0, -0.4]} height={1.8} delay={0.4} />
+        <SystemNode position={[-1.4, 0, -1.2]} height={1.1} delay={0.9} />
+        <SystemNode position={[1.6, 0, 1.1]} height={1.0} delay={1.3} />
+        <SystemNode position={[-0.8, 0, 1.6]} height={0.9} delay={1.7} />
+      </group>
     </Canvas>
   );
 }

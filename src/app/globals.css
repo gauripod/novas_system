@@ -1,16 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 html,
 body {
   margin: 0;
   padding: 0;
-  background: #05060a;
-  color: white;
+  background: radial-gradient(circle at center,
+      #222e57 0%,
+      #020308 70%);
   overflow: hidden;
-}
-
-canvas {
-  display: block;
 }
