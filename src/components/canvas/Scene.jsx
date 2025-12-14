@@ -24,6 +24,7 @@ export default function Scene() {
         <SystemNode position={[1.6, 0, 1.1]} height={1.0} delay={1.3} />
         <SystemNode position={[-0.8, 0, 1.6]} height={0.9} delay={1.7} />
       </group>
+      {/* o */}
     </Canvas>
   );
 }
