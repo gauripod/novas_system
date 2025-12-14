@@ -25,5 +25,6 @@ export default function Scene() {
         <SystemNode position={[-0.8, 0, 1.6]} height={0.9} delay={1.7} />
       </group>
     </Canvas>
+    // iuejnes
   );
 }
