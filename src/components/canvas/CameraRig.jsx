@@ -9,16 +9,19 @@ export default function CameraRig() {
 
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
-    cam.current.position.y = 0.95 + Math.sin(t * 0.08) * 0.03;
-    cam.current.lookAt(0, 0.5, -0.8);
+    cam.current.position.y = 3.6 + Math.sin(t * 0.08) * 0.06;
+    cam.current.position.x = Math.sin(t * 0.05) * 0.04;
+    cam.current.lookAt(0, 0.6, 0);
   });
 
   return (
     <PerspectiveCamera
       ref={cam}
       makeDefault
-      fov={44}
-      position={[0, 0.95, 3.0]}
+      fov={42}
+      position={[0, 3.6, 5.2]}
+      near={0.1}
+      far={30}
     />
   );
 }

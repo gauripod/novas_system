@@ -4,22 +4,22 @@ import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 
 export default function SystemSpine() {
-  const spine = useRef();
+  const ref = useRef();
 
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
-    spine.current.scale.y = 1 + Math.sin(t * 0.6) * 0.08;
+    ref.current.scale.y = 1 + Math.sin(t * 0.4) * 0.04;
   });
 
   return (
-    <mesh ref={spine} position={[0, 1.2, 0]}>
-      <cylinderGeometry args={[0.08, 0.12, 2.4, 32, 8]} />
+    <mesh ref={ref} position={[0, 0.9, 0]}>
+      <boxGeometry args={[0.18, 2.2, 0.18]} />
       <meshStandardMaterial
-        color="#0a1a1f"
+        color="#081317"
         emissive="#00eaff"
-        emissiveIntensity={0.35}
-        metalness={0.8}
-        roughness={0.15}
+        emissiveIntensity={0.32}
+        metalness={0.85}
+        roughness={0.25}
       />
     </mesh>
   );
